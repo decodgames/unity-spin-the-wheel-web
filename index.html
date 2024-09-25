@@ -135,7 +135,9 @@
         alert(message);
       });
     };
-    document.body.appendChild(script);
+    
+
+    // keyboardListeningElement: document.getElementById('username'),
 
     // function showUserDetailsForm() {
     //       document.getElementById('user-details-form').style.display = 'block';
@@ -147,6 +149,7 @@
     }
 
     function submitUserDetails() {
+      document.body.appendChild(script);
       var username = document.getElementById('username').value;
       var mobile = document.getElementById('mobile').value;
 
