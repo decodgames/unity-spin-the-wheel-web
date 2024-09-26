@@ -6,6 +6,7 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(to bottom, #66229D, #240C37);
+    display: flex;
 }
 
 #user-details-form {
@@ -15,7 +16,9 @@ body {
     flex-direction: column;
     gap: 2rem;
     padding: 1rem;
-    height: 90vh;
+    height: auto;
+    width: 360px;
+    margin: 0 auto;
 }
 
 #unity-footer {
@@ -29,13 +32,13 @@ body {
     display: block;
 }
 
-.text-input{
+.text-input {
     display: flex;
     gap: 10px;
     border: 1px solid #ffffff;
     border-radius: 50px;
-    padding: 1rem;
-    width: 50%;
+    padding: 0.8rem;
+    width: 80%;
 }
 
 input[type="text"] {
@@ -50,11 +53,15 @@ input[type="text"] {
     margin: 0;
 
     /* Custom styles */
-    font-family: inherit; /* Inherits font from parent element */
+    font-family: inherit;
+    /* Inherits font from parent element */
     font-size: 16px;
-    font-weight: bold;   /* Inherits font size from parent element */
-    color: #fff;       /* Inherits text color from parent element */
-    width: 100%;          /* Adjust width to fill the parent container */
+    font-weight: bold;
+    /* Inherits font size from parent element */
+    color: #fff;
+    /* Inherits text color from parent element */
+    width: 100%;
+    /* Adjust width to fill the parent container */
 }
 
 input[type="tel"] {
@@ -70,48 +77,49 @@ input[type="tel"] {
     font-weight: bold;
     color: #ffffff;
 
-    padding: 8px 12px;
+    /* padding: 8px 12px; */
     border-radius: 4px;
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 
-.description{
+.description {
     color: #E7CC7B;
     font-size: 24px;
     width: 80%;
     text-align: center;
 }
 
-.text-input label{
+.text-input label {
     display: flex;
     color: #fff;
     align-items: center;
 }
 
-.submit{
+.submit {
     background: linear-gradient(to bottom, #FFEECC, #AD9515);
     outline: none;
     border-radius: 50px;
-    padding: 1.5rem;
-    width: 55%;
+    padding: .5rem;
+    width: 90%;
     border: 1px solid;
     color: #000000;
     font-weight: bold;
     cursor: pointer;
     font-size: large;
+    height: 43px;
 }
 
-.title-image{
-    width: 250px;
+.title-image {
+    width: 50%;
 }
 
 @media only screen and (max-width: 767px) {
-    .text-input{
+    .text-input {
         width: 80%;
     }
 
-    .submit{
+    .submit {
         width: 89%;
     }
 
