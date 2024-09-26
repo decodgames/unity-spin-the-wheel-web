@@ -9,7 +9,7 @@ body {
     display: flex;
 }
 
-#user-details-form {
+.root-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,6 +20,15 @@ body {
     width: 360px;
     margin: 0 auto;
 }
+
+.result-container {
+    text-align: center;
+    padding: 1rem 1rem 1rem 1rem;
+    height: 100%;
+    width: 360px;
+    margin: auto;
+}
+
 
 #unity-footer {
     display: none;
@@ -82,11 +91,27 @@ input[type="tel"] {
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
+h2 {
+    color: #E7CC7B;
+    font-size: 32px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+h3 {
+    color: #ffffff;
+    font-size: 56px;
+    font-weight: bolder;
+    text-align: center;
+    border: 1px dashed #fff;
+    padding: 1rem;
+    text-transform: uppercase;
+}
+
 
 .description {
     color: #E7CC7B;
     font-size: 24px;
-    width: 80%;
     text-align: center;
 }
 
@@ -114,17 +139,62 @@ input[type="tel"] {
     width: 50%;
 }
 
-@media only screen and (max-width: 767px) {
+.coupon-container {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    height: 100%;
+    font-weight: bold;
+    border: 1px solid #0F032E;
+    background-color: #0F032E;
+    gap: 2rem;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    padding-top: 3rem;
+}
+
+.coupon-display {
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px dashed #ffffff;
+    border-radius: 50px;
+    width: 82%;
+    padding: 0px 12px;
+}
+
+#result-container button {
+    align-self: center;
+}
+
+.coupon-container ul {
+    text-align: left;
+}
+
+.limit-over {
+    margin: auto;
+    color: #E7CC7B;
+}
+
+.limit-over p {
+    font-size: 3rem;
+    line-height: 48px;
+    padding: 1rem;
+    text-align: center;
+}
+
+/* @media only screen and (max-width: 767px) {
     .text-input {
         width: 80%;
     }
 
     .submit {
-        width: 89%;
+        width: 90%;
     }
 
     #user-details-form {
         gap: 1rem;
         height: auto;
     }
-}
+} */

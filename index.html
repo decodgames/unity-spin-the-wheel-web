@@ -12,7 +12,7 @@
 
 <body>
 
-  <div id="user-details-form">
+  <div id="user-details-form" class="root-container">
     <img class="title-image" src="https://decodgames.github.io/assets/title.png" alt="title" />
     <p class="description">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -42,6 +42,35 @@
       <div id="unity-fullscreen-button"></div>
       <div id="unity-build-title">SpinTheWheel</div>
     </div>
+  </div>
+
+
+  <div id="result-container" class="result-container">
+    <h2>Amazing</h2>
+    <h3 id="winner-item"></h3>
+    <p class="description">
+      You Won 50% Off On Bajji Flour On Your Next Order 
+    </p>
+
+    <div class="coupon-container">
+      <div class="coupon-display">
+        <p id="coupon-text">GOLDENBATTER</p>
+        <span id="message"></span>
+        <img src="https://decodgames.github.io/assets/copy.png" alt="copy" onclick="copyToClipboard()" />
+      </div>
+      
+      <button class="submit" type="button">Shop now</button>
+
+      <ul>
+        <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
+        <li>from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney</li>
+        <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="limit-over" id="limit-passed">
+    <p>You have exceeded your gameplay limit!</p>
   </div>
   <script src="script.js"></script>
 </body>
