@@ -1,7 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
     initializeContainers();
     handleUserAvailStatus();
-    setupUnity();
+    adjustForMobile();
+
+    // Clear error message on input
+    document.getElementById('username').addEventListener('input', () => {
+        const usernameError = document.getElementById('username-error');
+        usernameError.style.display = 'none';
+    });
+
+    document.getElementById('mobile').addEventListener('input', () => {
+        const mobileError = document.getElementById('mobile-error');
+        mobileError.style.display = 'none';
+    });
 });
 
 const container = document.querySelector("#unity-container");
@@ -41,7 +52,7 @@ function setupUnity() {
         showBanner: unityShowBanner,
     };
 
-    adjustForMobile();
+
 
     loadingBar.style.display = "none";
 
@@ -105,7 +116,7 @@ function removeBanner(div) {
 function showResultView() {
     localStorage.setItem("isAvailed", "true");
     let winnerLabel = localStorage.getItem("winner");
-    console.log("Winner labnel", winnerLabel);
+    console.log("Winner label", winnerLabel);
     winnerLabelElement.innerHTML = winnerLabel;
     container.style.display = 'none';
     document.body.removeChild(document.querySelector(`script[src*="unity-spin-the-wheel.loader.js"]`));
@@ -118,13 +129,40 @@ function hideUserDetailsForm() {
 }
 
 function submitUserDetails() {
-    const username = document.getElementById('username').value;
-    const mobile = document.getElementById('mobile').value;
+    const username = document.getElementById('username').value.trim();
+    const mobile = document.getElementById('mobile').value.trim();
+    const usernameError = document.getElementById('username-error');
+    const mobileError = document.getElementById('mobile-error');
 
-    localStorage.setItem("username", username);
-    localStorage.setItem("mobile", mobile);
+    // Reset error messages
+    usernameError.style.display = 'none';
+    mobileError.style.display = 'none';
 
-    hideUserDetailsForm();
+    let isValid = true;
+
+    // Validate username
+    if (!username) {
+        usernameError.textContent = "Please enter your name.";
+        usernameError.style.display = 'block';
+        isValid = false;
+    }
+
+    // Validate mobile number
+    const mobileRegex = /^[0-9]{10}$/;
+    if (!mobileRegex.test(mobile)) {
+        mobileError.textContent = "Please enter a valid 10-digit mobile number.";
+        mobileError.style.display = 'block';
+        isValid = false;
+    }
+
+    // If the form is valid, proceed with submission
+    if (isValid) {
+        localStorage.setItem("username", username);
+        localStorage.setItem("mobile", mobile);
+
+        hideUserDetailsForm();
+        setupUnity();
+    }
 }
 
 function copyToClipboard() {

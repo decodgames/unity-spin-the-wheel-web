@@ -21,11 +21,12 @@
       <img src="https://decodgames.github.io/assets/avatar.png" alt="username" />
       <input type="text" id="username" name="username">
     </div>
+    <span id="username-error" class="error-message"></span>
     <div class="text-input">
       <label for="mobile">+91</label>
       <input type="tel" id="mobile" name="mobile">
     </div>
-
+    <span id="mobile-error" class="error-message"></span>
     <button class="submit" type="button" onclick="submitUserDetails()">Shop now</button>
   </div>
   <div id="unity-container" class="unity-desktop" style="display: none;">
@@ -58,7 +59,7 @@
         <span id="message"></span>
         <img src="https://decodgames.github.io/assets/copy.png" alt="copy" onclick="copyToClipboard()" />
       </div>
-      
+
       <button class="submit" type="button">Shop now</button>
 
       <ul>

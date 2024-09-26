@@ -14,7 +14,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 2rem;
+    gap: 10px;
     padding: 1rem;
     height: auto;
     width: 360px;
@@ -184,17 +184,9 @@ h3 {
     text-align: center;
 }
 
-/* @media only screen and (max-width: 767px) {
-    .text-input {
-        width: 80%;
-    }
-
-    .submit {
-        width: 90%;
-    }
-
-    #user-details-form {
-        gap: 1rem;
-        height: auto;
-    }
-} */
+.error-message {
+    color: rgb(245, 91, 91);
+    font-size: 0.9em;
+    margin-left: 40px;
+    align-self: flex-start;
+}
