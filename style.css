@@ -102,6 +102,10 @@ input[type="tel"] {
     font-size: large;
 }
 
+.title-image{
+    width: 250px;
+}
+
 @media only screen and (max-width: 767px) {
     .text-input{
         width: 80%;
