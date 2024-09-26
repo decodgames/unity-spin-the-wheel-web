@@ -110,4 +110,9 @@ input[type="tel"] {
     .submit{
         width: 89%;
     }
+
+    #user-details-form {
+        gap: 1rem;
+        height: auto;
+    }
 }
