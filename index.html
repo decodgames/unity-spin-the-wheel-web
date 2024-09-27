@@ -8,26 +8,33 @@
   <link rel="shortcut icon" href="TemplateData/favicon.ico">
   <link rel="stylesheet" href="TemplateData/style.css">
   <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+    <link rel="stylesheet" href="fonts.css">
 </head>
 
 <body>
 
   <div id="user-details-form" class="root-container">
     <img class="title-image" src="https://decodgames.github.io/assets/title.png" alt="title" />
-    <p class="description">
+    <p class="description poppins-medium">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
     </p>
-    <div class="text-input">
+    <div class="text-input poppins-bold">
       <img src="https://decodgames.github.io/assets/avatar.png" alt="username" />
       <input type="text" id="username" name="username">
     </div>
-    <span id="username-error" class="error-message"></span>
-    <div class="text-input">
+    <span id="username-error" class="error-message poppins-light"></span>
+    <div class="text-input poppins-bold">
       <label for="mobile">+91</label>
       <input type="tel" id="mobile" name="mobile">
     </div>
-    <span id="mobile-error" class="error-message"></span>
-    <button class="submit" type="button" onclick="submitUserDetails()">Shop now</button>
+    <span id="mobile-error" class="error-message poppins-light"></span>
+    <button class="submit poppins-extrabold" type="button" onclick="submitUserDetails()">Shop now</button>
   </div>
   <div id="unity-container" class="unity-desktop" style="display: none;">
     <canvas id="unity-canvas" width=960 height=600></canvas>
@@ -47,20 +54,20 @@
 
 
   <div id="result-container" class="result-container">
-    <h2>Amazing</h2>
-    <h3 id="winner-item"></h3>
-    <p class="description">
+    <p class="header2 poppins-extrabold">Amazing</p>
+    <p class="header3 poppins-bold" id="winner-item"></p>
+    <p class="description poppins-bold">
       You Won 50% Off On Bajji Flour On Your Next Order 
     </p>
 
-    <div class="coupon-container">
+    <div class="coupon-container poppins-bold">
       <div class="coupon-display">
         <p id="coupon-text">GOLDENBATTER</p>
         <span id="message"></span>
         <img src="https://decodgames.github.io/assets/copy.png" alt="copy" onclick="copyToClipboard()" />
       </div>
 
-      <button class="submit" type="button">Shop now</button>
+      <button class="submit poppins-extrabold" type="button">Shop now</button>
 
       <ul>
         <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
@@ -70,7 +77,7 @@
     </div>
   </div>
 
-  <div class="limit-over" id="limit-passed">
+  <div class="limit-over poppins-bold" id="limit-passed">
     <p>You have exceeded your gameplay limit!</p>
   </div>
   <script src="script.js"></script>
