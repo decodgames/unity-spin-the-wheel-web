@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeContainers();
     handleUserAvailStatus();
     adjustForMobile();
-    setupUnity();
 
     // Clear error message on input
     document.getElementById('username').addEventListener('input', () => {
@@ -162,6 +161,7 @@ function submitUserDetails() {
         localStorage.setItem("mobile", mobile);
 
         hideUserDetailsForm();
+        setupUnity();
     }
 }
 
