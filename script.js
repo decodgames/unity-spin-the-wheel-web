@@ -9,19 +9,19 @@ document.addEventListener("DOMContentLoaded", () => {
         usernameError.textContent = "";
     });
 
-    document.getElementById('mobile').addEventListener('input', function(e) {
+    document.getElementById('mobile').addEventListener('input', function (e) {
         const mobileError = document.getElementById('mobile-error');
         mobileError.textContent = "";
-    
+
         // Access the value using e.target.value
         e.target.value = e.target.value.replace(/\D/g, '');
-    
+
         // Limit the input to 10 digits
         if (e.target.value.length > 10) {
             e.target.value = e.target.value.slice(0, 10);
         }
     });
-    
+
 });
 
 const container = document.querySelector("#unity-container");
@@ -155,7 +155,7 @@ function showResultView() {
     couponDetailsDiv.innerHTML += termsAndConditions;
     container.style.display = 'none';
     document.body.removeChild(document.querySelector(`script[src*="unity-spin-the-wheel.loader.js"]`));
-    resultContainer.style.display = 'block';
+    resultContainer.style.display = 'flex';
 }
 
 function hideUserDetailsForm() {
@@ -223,32 +223,32 @@ function copyCouponToClipboard() {
 
 function getWinner(segment) {
     switch (segment) {
-        case "fish curry":
+        case "Fish Curry":
             return {
                 name: "fish-curry",
                 value: "20"
             };
-        case "vanilla shake":
+        case "Vanilla Shake":
             return {
                 name: "vanilla-shake",
                 value: "10"
             };
-        case "vanilla lase":
+        case "Vanilla Lassi":
             return {
                 name: "vanilla-lase",
                 value: "10"
             };
-        case "paneer tikka":
+        case "Paneer Tikka":
             return {
                 name: "paneer-tikka",
                 value: "20"
             };
-        case "egg fried rice":
+        case "Egg Fried Rice":
             return {
                 name: "egg-fried-rice",
                 value: "15"
             };
-        case "parotta salna":
+        case "Parotta Salna":
             return {
                 name: "parotta-salna",
                 value: "20"
