@@ -6,13 +6,22 @@ document.addEventListener("DOMContentLoaded", () => {
     // Clear error message on input
     document.getElementById('username').addEventListener('input', () => {
         const usernameError = document.getElementById('username-error');
-        usernameError.style.display = 'none';
+        usernameError.textContent = "";
     });
 
-    document.getElementById('mobile').addEventListener('input', () => {
+    document.getElementById('mobile').addEventListener('input', function(e) {
         const mobileError = document.getElementById('mobile-error');
-        mobileError.style.display = 'none';
+        mobileError.textContent = "";
+    
+        // Access the value using e.target.value
+        e.target.value = e.target.value.replace(/\D/g, '');
+    
+        // Limit the input to 10 digits
+        if (e.target.value.length > 10) {
+            e.target.value = e.target.value.slice(0, 10);
+        }
     });
+    
 });
 
 const container = document.querySelector("#unity-container");
@@ -24,7 +33,11 @@ const warningBanner = document.querySelector("#unity-warning");
 const resultContainer = document.getElementById('result-container');
 const userDetailContainer = document.getElementById('user-details-form');
 const limitOverContainer = document.getElementById("limit-passed");
-const winnerLabelElement = document.getElementById("winner-item");
+const imageElement = document.getElementById("winner-item");
+const pElement = document.getElementById("winner-label");
+const p_DetailElement = document.getElementById("winner-detail");
+const couponText = document.getElementById("coupon-text");
+const couponDetailsDiv = document.getElementById('coupon-details');
 
 function initializeContainers() {
     resultContainer.style.display = 'none';
@@ -52,20 +65,29 @@ function setupUnity() {
         showBanner: unityShowBanner,
     };
 
-
-
-    loadingBar.style.display = "none";
+    // Show the loading bar
+    loadingBar.style.display = "block";
+    progressBarFull.style.width = "0%"; // Reset progress
 
     const script = document.createElement("script");
     script.src = `${buildUrl}/unity-spin-the-wheel.loader.js`;
+
     script.onload = () => {
-        createUnityInstance(canvas, config, updateProgressBar).then((unityInstance) => {
-            loadingBar.style.display = "none";
-            fullscreenButton.onclick = () => document.makeFullscreen('unity-container');
-        }).catch((message) => alert(message));
+        createUnityInstance(canvas, config, (progress) => {
+            updateProgressBar(progress);  // Update the progress bar as the game loads
+
+            if (progress >= 1) {
+                // Hide the loading bar when fully loaded
+                loadingBar.style.display = "none";
+            }
+        }).then((unityInstance) => {
+            fullscreenButton.onclick = () => unityInstance.SetFullscreen(1); // Enable fullscreen functionality
+        }).catch((message) => alert(message)); // Catch and display any error during loading
     };
+
     document.body.appendChild(script);
 }
+
 
 function adjustForMobile() {
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -114,10 +136,23 @@ function removeBanner(div) {
 }
 
 function showResultView() {
+    // const element = document.getElementById("unity-container");
+    // element.remove();
     localStorage.setItem("isAvailed", "true");
     let winnerLabel = localStorage.getItem("winner");
-    console.log("Winner label", winnerLabel);
-    winnerLabelElement.innerHTML = winnerLabel;
+    let couponDetails = JSON.parse(localStorage.getItem("couponDetails"));
+    let couponDescription = JSON.parse(localStorage.getItem("couponDescription"));
+    let termsAndConditions = couponDescription.data.campaign_details.terms_and_conditions;
+    let howToUse = couponDescription.data.campaign_details.how_to_use;
+    couponText.innerText = couponDetails.data.coupon_code;
+    let winnerObject = getWinner(winnerLabel);
+    let imageSource = "https://decodgames.github.io/assets/" + winnerObject.name + ".png";
+    pElement.innerText = winnerLabel;
+    p_DetailElement.innerHTML = `You Won ${winnerObject.value}% Off On ${winnerLabel} On Your Next Order`;
+    imageElement.src = imageSource;
+
+    couponDetailsDiv.innerHTML += howToUse;
+    couponDetailsDiv.innerHTML += termsAndConditions;
     container.style.display = 'none';
     document.body.removeChild(document.querySelector(`script[src*="unity-spin-the-wheel.loader.js"]`));
     resultContainer.style.display = 'block';
@@ -135,15 +170,18 @@ function submitUserDetails() {
     const mobileError = document.getElementById('mobile-error');
 
     // Reset error messages
-    usernameError.style.display = 'none';
-    mobileError.style.display = 'none';
+    // usernameError.style.display = 'none';
+    // mobileError.style.display = 'none';
+
+    usernameError.textContent = "";
+    mobileError.textContent = "";
 
     let isValid = true;
 
     // Validate username
     if (!username) {
         usernameError.textContent = "Please enter your name.";
-        usernameError.style.display = 'block';
+        // usernameError.style.display = 'block';
         isValid = false;
     }
 
@@ -151,7 +189,7 @@ function submitUserDetails() {
     const mobileRegex = /^[0-9]{10}$/;
     if (!mobileRegex.test(mobile)) {
         mobileError.textContent = "Please enter a valid 10-digit mobile number.";
-        mobileError.style.display = 'block';
+        // mobileError.style.display = 'block';
         isValid = false;
     }
 
@@ -162,11 +200,12 @@ function submitUserDetails() {
 
         hideUserDetailsForm();
         setupUnity();
+        // resultContainer.style.display = 'block';
     }
 }
 
-function copyToClipboard() {
-    const copyText = document.getElementById("coupon-text").innerText;
+function copyCouponToClipboard() {
+    const copyText = couponText.innerText;
 
     const elem = document.createElement("textarea");
     document.body.appendChild(elem);
@@ -179,4 +218,42 @@ function copyToClipboard() {
     message.innerText = "Copied";
 
     setTimeout(() => message.innerText = "", 2000);
+}
+
+
+function getWinner(segment) {
+    switch (segment) {
+        case "fish curry":
+            return {
+                name: "fish-curry",
+                value: "20"
+            };
+        case "vanilla shake":
+            return {
+                name: "vanilla-shake",
+                value: "10"
+            };
+        case "vanilla lase":
+            return {
+                name: "vanilla-lase",
+                value: "10"
+            };
+        case "paneer tikka":
+            return {
+                name: "paneer-tikka",
+                value: "20"
+            };
+        case "egg fried rice":
+            return {
+                name: "egg-fried-rice",
+                value: "15"
+            };
+        case "parotta salna":
+            return {
+                name: "parotta-salna",
+                value: "20"
+            };
+        default:
+            return null;
+    }
 }

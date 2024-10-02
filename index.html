@@ -15,32 +15,37 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lavishly+Yours&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lavishly+Yours&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="fonts.css">
 </head>
 
 <body>
-
+  <img class="frame-image" src="https://decodgames.github.io/assets/frame.png" alt="anjappar" />
   <div id="user-details-form" class="root-container">
-    <img class="title-image" src="https://decodgames.github.io/assets/title.png" alt="title" />
-    <p class="description poppins-medium">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+    <img class="title-image" src="https://static.wixstatic.com/media/4e5aec_4e621b71201d484c81f2461b56ad5b7b~mv2.png/v1/crop/x_0,y_0,w_2036,h_1413/fill/w_184,h_128,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/ANJAPPAR%20LOGO-01.png" alt="anjappar" />
+    <p class="description poppins-bold">
+      You have a chance to unlock special offers, exciting discounts, and even delicious food items! 
     </p>
-    <div class="text-input poppins-bold">
-      <img src="https://decodgames.github.io/assets/avatar.png" alt="username" />
-      <input type="text" id="username" name="username">
+    <div class="login-form">
+      <div class="text-input poppins-bold">
+        <img src="https://decodgames.github.io/assets/avatar-red.png" alt="username" />
+        <span>|</span>
+        <input type="text" id="username" name="username">
+      </div>
+      <span id="username-error" class="error-message poppins-light"></span>
+      <div class="text-input poppins-bold">
+        <label for="mobile">+91</label>
+        <span>|</span>
+        <input type="tel" id="mobile" name="mobile" maxlength="10">
+      </div>
+      <span id="mobile-error" class="error-message poppins-light"></span>
+      <button class="submit poppins-extrabold" type="button" onclick="submitUserDetails()">Login</button>
     </div>
-    <span id="username-error" class="error-message poppins-light"></span>
-    <div class="text-input poppins-bold">
-      <label for="mobile">+91</label>
-      <input type="tel" id="mobile" name="mobile">
-    </div>
-    <span id="mobile-error" class="error-message poppins-light"></span>
-    <button class="submit poppins-extrabold" type="button" onclick="submitUserDetails()">Shop now</button>
   </div>
+
   <div id="unity-container" class="unity-desktop" style="display: none;">
     <canvas id="unity-canvas" width=960 height=600></canvas>
     <div id="unity-loading-bar">
@@ -59,26 +64,32 @@
 
 
   <div id="result-container" class="result-container">
-    <p class="header2 lavishly-yours-regular">Amazing</p>
-    <p class="header3 poppins-bold" id="winner-item"></p>
-    <p class="description poppins-bold">
+    <img class="result-image" src="https://static.wixstatic.com/media/4e5aec_4e621b71201d484c81f2461b56ad5b7b~mv2.png/v1/crop/x_0,y_0,w_2036,h_1413/fill/w_184,h_128,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/ANJAPPAR%20LOGO-01.png" alt="anjappar" />
+    <p id="winner-detail" class="description poppins-bold">
       You Won 50% Off On Bajji Flour On Your Next Order 
     </p>
+    <div class="winner-card">
+      <img src="" id="winner-item" />
+      <p id="winner-label" class="poppins-bold"></p>
+    </div>
+
 
     <div class="coupon-container poppins-bold">
       <div class="coupon-display">
-        <p id="coupon-text">GOLDENBATTER</p>
+        <p id="coupon-text"></p>
         <span id="message"></span>
-        <img src="https://decodgames.github.io/assets/copy.png" alt="copy" onclick="copyToClipboard()" />
+        <img src="https://decodgames.github.io/assets/Copy-red.png" alt="copy" onclick="copyCouponToClipboard()" />
       </div>
 
       <button class="submit poppins-extrabold" type="button">Shop now</button>
+      <div id="coupon-details" class="poppins-regular">
 
-      <ul>
+      </div>
+      <!-- <ul>
         <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
         <li>from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney</li>
         <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
-      </ul>
+      </ul> -->
     </div>
   </div>
 

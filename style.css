@@ -5,20 +5,31 @@ body {
     overflow: hidden;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, #66229D, #240C37);
+    /* background: linear-gradient(to bottom, #66229D, #240C37); */
+    background-color: #FBC52C;
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .root-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
     gap: 10px;
     padding: 1rem;
     height: auto;
     width: 360px;
-    margin: 0 auto;
+    flex: 1;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 1px;
 }
 
 .result-container {
@@ -42,33 +53,27 @@ body {
 .text-input {
     display: flex;
     gap: 10px;
-    border: 1px solid #ffffff;
+    border: 1px solid #9F2220;
+    background-color: #ffffff;
     border-radius: 50px;
     padding: 0.8rem;
-    width: 80%;
+    width: 90%;
 }
 
 input[type="text"] {
-    /* Remove default appearance */
     border: none;
     outline: none;
     background: none;
     box-shadow: none;
 
-    /* Optional reset */
     padding: 0;
     margin: 0;
 
-    /* Custom styles */
     font-family: inherit;
-    /* Inherits font from parent element */
     font-size: 16px;
     font-weight: bold;
-    /* Inherits font size from parent element */
-    color: #fff;
-    /* Inherits text color from parent element */
+    color: #000000;
     width: 100%;
-    /* Adjust width to fill the parent container */
 }
 
 input[type="tel"] {
@@ -82,7 +87,7 @@ input[type="tel"] {
     font-family: inherit;
     font-size: 16px;
     font-weight: bold;
-    color: #ffffff;
+    color: #030303;
 
     border-radius: 4px;
     transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -106,25 +111,26 @@ input[type="tel"] {
 
 
 .description {
-    color: #E7CC7B;
-    font-size: 24px;
+    color: #9F2220;
+    font-size: 19px;
     text-align: center;
 }
 
 .text-input label {
     display: flex;
-    color: #fff;
+    color: #000000;
     align-items: center;
 }
 
 .submit {
-    background: linear-gradient(to bottom, #FFEECC, #AD9515);
+    /* background: linear-gradient(to bottom, #C3413F, #ffffff); */
+    background-color: #C3413F;
     outline: none;
     border-radius: 50px;
     padding: .5rem;
-    width: 90%;
-    border: 1px solid;
-    color: #000000;
+    width: 100%;
+    border: 1px solid #C3413F;
+    color: #ffffff;
     font-weight: bold;
     cursor: pointer;
     font-size: large;
@@ -132,21 +138,29 @@ input[type="tel"] {
 }
 
 .title-image {
-    width: 50%;
+    width: 185px;
+    height: 129px;
+    margin-top: 10%;
+}
+
+.result-image{
+    width: 100px;
+    height: 70px;
+    margin-top: 10%;
+}
+
+.frame-image{
+    height: 25px;
 }
 
 .coupon-container {
     display: flex;
     flex-direction: column;
-    color: #fff;
-    height: 100%;
+    color: #000000;
     font-weight: bold;
-    border: 1px solid #0F032E;
-    background-color: #0F032E;
-    gap: 2rem;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    padding-top: 3rem;
+    gap: 1rem;
+    padding-top: 1rem;
+    justify-content: space-evenly;
 }
 
 .coupon-display {
@@ -154,10 +168,11 @@ input[type="tel"] {
     align-self: center;
     justify-content: space-between;
     align-items: center;
-    border: 1px dashed #ffffff;
+    border: 1px dashed #000000;
     border-radius: 50px;
-    width: 82%;
-    padding: 0px 12px;
+    width: 87%;
+    padding: 0px 24px;
+    text-transform: uppercase;
 }
 
 #result-container button {
@@ -178,11 +193,45 @@ input[type="tel"] {
     line-height: 48px;
     padding: 1rem;
     text-align: center;
+    color: #9F2220;
 }
 
 .error-message {
-    color: rgb(245, 91, 91);
+    color: #fa0501;
     font-size: 0.9em;
     margin-left: 40px;
     align-self: flex-start;
+    height: 20px;
+}
+
+.winner-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid white;
+    width: 142px;
+    margin: auto;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+#winner-item{
+    width: 127px;
+    height: 98px;
+}
+
+.winner-card p{
+    text-transform: capitalize;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#coupon-details{
+    text-align: left;
+}
+
+#unity-logo {
+    display: none !important;
 }
