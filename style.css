@@ -14,7 +14,7 @@ body {
 
 .root-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 10px;
@@ -151,7 +151,7 @@ input[type="tel"] {
 }
 
 .frame-image {
-    height: 25px;
+    width: 360px;
 }
 
 .coupon-container {
@@ -232,3 +232,25 @@ input[type="tel"] {
 #coupon-details {
     text-align: left;
 }
+
+.shop-button{
+    text-decoration: none;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Target all mobile devices */
+@media only screen and (max-width: 767px) {
+    .root-container {
+        width: auto;
+        justify-content: space-between;
+    }
+
+    .frame-image {
+        width: auto;
+    }
+    
+  }
+  

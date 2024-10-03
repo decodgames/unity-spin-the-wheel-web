@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>SpinTheWheel</title>
-  <link rel="shortcut icon" href="TemplateData/favicon.ico">
+  <link rel="shortcut icon" href="https://pauket.com/favicon.ico">
   <link rel="stylesheet" href="TemplateData/style.css">
   <link rel="stylesheet" href="style.css">
 
@@ -33,16 +33,16 @@
       <div class="text-input poppins-bold">
         <img src="https://decodgames.github.io/assets/avatar-red.png" alt="username" />
         <span>|</span>
-        <input type="text" id="username" name="username">
+        <input type="text" id="username" name="username" placeholder="Name">
       </div>
       <span id="username-error" class="error-message poppins-light"></span>
       <div class="text-input poppins-bold">
         <label for="mobile">+91</label>
         <span>|</span>
-        <input type="tel" id="mobile" name="mobile" maxlength="10">
+        <input type="tel" id="mobile" name="mobile" maxlength="10" placeholder="Phone">
       </div>
       <span id="mobile-error" class="error-message poppins-light"></span>
-      <button class="submit poppins-extrabold" type="button" onclick="submitUserDetails()">Login</button>
+      <button class="submit poppins-extrabold" type="button" onclick="submitUserDetails()">Play Now</button>
     </div>
   </div>
 
@@ -81,7 +81,7 @@
         <img src="https://decodgames.github.io/assets/Copy-red.png" alt="copy" onclick="copyCouponToClipboard()" />
       </div>
 
-      <button class="submit poppins-extrabold" type="button">Shop now</button>
+      <a class="submit poppins-extrabold shop-button" type="button" id="cta">Shop now</a>
       <div id="coupon-details" class="poppins-regular">
 
       </div>

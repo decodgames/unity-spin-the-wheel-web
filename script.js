@@ -38,6 +38,7 @@ const pElement = document.getElementById("winner-label");
 const p_DetailElement = document.getElementById("winner-detail");
 const couponText = document.getElementById("coupon-text");
 const couponDetailsDiv = document.getElementById('coupon-details');
+const ctaAnchorElemt = document.getElementById('cta');
 
 function initializeContainers() {
     resultContainer.style.display = 'none';
@@ -153,6 +154,9 @@ function showResultView() {
 
     couponDetailsDiv.innerHTML += howToUse;
     couponDetailsDiv.innerHTML += termsAndConditions;
+
+    const link = couponDetails.data.isCTAvalid ? couponDetails.data.CTAredirect : couponDetails.data.redirect_url;
+    ctaAnchorElemt.href = link;
     container.style.display = 'none';
     document.body.removeChild(document.querySelector(`script[src*="unity-spin-the-wheel.loader.js"]`));
     resultContainer.style.display = 'flex';
