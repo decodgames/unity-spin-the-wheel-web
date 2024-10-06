@@ -139,41 +139,74 @@ function removeBanner(div) {
 }
 
 function showResultView() {
-    // const element = document.getElementById("unity-container");
-    // element.remove();
+    // Set local storage to indicate that the coupon has been availed
     localStorage.setItem("isAvailed", "true");
-    let winnerLabel = localStorage.getItem("winner");
-    let couponDetails = JSON.parse(localStorage.getItem("couponDetails"));
-    let couponDescription = JSON.parse(localStorage.getItem("couponDescription"));
 
-    if (couponDetails.status) {
-        let termsAndConditions = couponDescription.data.campaign_details.terms_and_conditions;
-        let howToUse = couponDescription.data.campaign_details.how_to_use;
-        couponText.innerText = couponDetails.data.coupon_code;
+    // Get winner information and coupon details from localStorage
+    const winnerLabel = localStorage.getItem("winner");
+    const couponDetails = JSON.parse(localStorage.getItem("couponDetails"));
+    const couponDescription = JSON.parse(localStorage.getItem("couponDescription"));
 
-        couponDetailsDiv.innerHTML += howToUse;
-        couponDetailsDiv.innerHTML += termsAndConditions;
-
-        let winnerObject = getWinner(winnerLabel);
-        let imageSource = "https://decodgames.github.io/assets/" + winnerObject.name + ".png";
-        pElement.innerText = winnerLabel;
-        p_DetailElement.innerHTML = `You Won ${winnerObject.value}% Off On ${winnerLabel} On Your Next Order`;
-        imageElement.src = imageSource;
-
-
-        const link = couponDetails.data.isCTAvalid ? couponDetails.data.CTAredirect : couponDetails.data.redirect_url;
-        ctaAnchorElemt.href = link;
-        resultContainer.style.display = 'flex';
-    } else {
-        resultDesciptionResultElement.innerText = couponDetails.message;
-        resultContainer.style.display = "none";
-        limitOverContainer.style.display = 'block';
+    if (!couponDetails || !couponDescription) {
+        console.error("Coupon details or description missing from localStorage.");
+        return;
     }
 
-    container.style.display = 'none';
-    document.body.removeChild(document.querySelector(`script[src*="unity-spin-the-wheel.loader.js"]`));
+    if (couponDetails.status) {
+        displayCouponDetails(winnerLabel, couponDetails, couponDescription);
+    } else {
+        displayLimitOverMessage(couponDetails.message);
+    }
 
+    // Hide the game container and remove the game script
+    container.style.display = 'none';
+    removeGameScript();
 }
+
+function displayCouponDetails(winnerLabel, couponDetails, couponDescription) {
+    const termsAndConditions = couponDescription.data.campaign_details.terms_and_conditions;
+    const howToUse = couponDescription.data.campaign_details.how_to_use;
+
+    // Display coupon code
+    couponText.innerText = couponDetails.data.coupon_code;
+
+    // Append how to use and terms & conditions to the coupon details div
+    couponDetailsDiv.innerHTML += howToUse;
+    couponDetailsDiv.innerHTML += termsAndConditions;
+
+    // Display winner details
+    const winnerObject = getWinner(winnerLabel);
+    const imageSource = `https://decodgames.github.io/assets/${winnerObject.name}.png`;
+
+    pElement.innerText = winnerLabel;
+    p_DetailElement.innerHTML = `You Won ${winnerObject.value}% Off On ${winnerLabel} On Your Next Order`;
+    imageElement.src = imageSource;
+
+    // Set CTA link (if valid)
+    const link = couponDetails.data.isCTAvalid ? couponDetails.data.CTAredirect : couponDetails.data.redirect_url;
+    ctaAnchorElemt.href = link;
+
+    // Display the result container
+    resultContainer.style.display = 'flex';
+}
+
+function displayLimitOverMessage(message) {
+    // Display limit over message
+    resultDesciptionResultElement.innerText = message;
+
+    // Hide result container and show limit over container
+    resultContainer.style.display = "none";
+    limitOverContainer.style.display = 'block';
+}
+
+function removeGameScript() {
+    // Remove the Unity spin the wheel game script from the DOM
+    const unityScript = document.querySelector(`script[src*="unity-spin-the-wheel.loader.js"]`);
+    if (unityScript) {
+        document.body.removeChild(unityScript);
+    }
+}
+
 
 function hideUserDetailsForm() {
     userDetailContainer.style.display = 'none';
@@ -215,10 +248,21 @@ function submitUserDetails() {
         localStorage.setItem("username", username);
         localStorage.setItem("mobile", mobile);
 
-        hideUserDetailsForm();
-        setupUnity();
+        if (saveUserDetails()) {
+            hideUserDetailsForm();
+            setupUnity();
+        } else {
+            localStorage.setItem("isAvailed", "true");
+            handleUserAvailStatus();
+        }
+
+
         // resultContainer.style.display = 'block';
     }
+}
+
+function saveUserDetails() {
+    return true;
 }
 
 function copyCouponToClipboard() {
