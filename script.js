@@ -39,6 +39,8 @@ const p_DetailElement = document.getElementById("winner-detail");
 const couponText = document.getElementById("coupon-text");
 const couponDetailsDiv = document.getElementById('coupon-details');
 const ctaAnchorElemt = document.getElementById('cta');
+const imageResultElement = document.getElementById('result-item');
+const resultDesciptionResultElement = document.getElementById('result-description');
 
 function initializeContainers() {
     resultContainer.style.display = 'none';
@@ -143,23 +145,34 @@ function showResultView() {
     let winnerLabel = localStorage.getItem("winner");
     let couponDetails = JSON.parse(localStorage.getItem("couponDetails"));
     let couponDescription = JSON.parse(localStorage.getItem("couponDescription"));
-    let termsAndConditions = couponDescription.data.campaign_details.terms_and_conditions;
-    let howToUse = couponDescription.data.campaign_details.how_to_use;
-    couponText.innerText = couponDetails.data.coupon_code;
-    let winnerObject = getWinner(winnerLabel);
-    let imageSource = "https://decodgames.github.io/assets/" + winnerObject.name + ".png";
-    pElement.innerText = winnerLabel;
-    p_DetailElement.innerHTML = `You Won ${winnerObject.value}% Off On ${winnerLabel} On Your Next Order`;
-    imageElement.src = imageSource;
 
-    couponDetailsDiv.innerHTML += howToUse;
-    couponDetailsDiv.innerHTML += termsAndConditions;
+    if (couponDetails.status) {
+        let termsAndConditions = couponDescription.data.campaign_details.terms_and_conditions;
+        let howToUse = couponDescription.data.campaign_details.how_to_use;
+        couponText.innerText = couponDetails.data.coupon_code;
 
-    const link = couponDetails.data.isCTAvalid ? couponDetails.data.CTAredirect : couponDetails.data.redirect_url;
-    ctaAnchorElemt.href = link;
+        couponDetailsDiv.innerHTML += howToUse;
+        couponDetailsDiv.innerHTML += termsAndConditions;
+
+        let winnerObject = getWinner(winnerLabel);
+        let imageSource = "https://decodgames.github.io/assets/" + winnerObject.name + ".png";
+        pElement.innerText = winnerLabel;
+        p_DetailElement.innerHTML = `You Won ${winnerObject.value}% Off On ${winnerLabel} On Your Next Order`;
+        imageElement.src = imageSource;
+
+
+        const link = couponDetails.data.isCTAvalid ? couponDetails.data.CTAredirect : couponDetails.data.redirect_url;
+        ctaAnchorElemt.href = link;
+        resultContainer.style.display = 'flex';
+    } else {
+        resultDesciptionResultElement.innerText = couponDetails.message;
+        resultContainer.style.display = "none";
+        limitOverContainer.style.display = 'block';
+    }
+
     container.style.display = 'none';
     document.body.removeChild(document.querySelector(`script[src*="unity-spin-the-wheel.loader.js"]`));
-    resultContainer.style.display = 'flex';
+
 }
 
 function hideUserDetailsForm() {
